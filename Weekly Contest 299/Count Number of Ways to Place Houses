@@ -1,0 +1,26 @@
+#define ll long long
+const int N = 1e9 + 7;
+class Solution {
+public:
+    int countHousePlacements(int n) {
+       
+        vector<ll>e(n+10 , 0);
+        vector<ll>o(n+10 , 0);
+        vector<ll>t(n+10 , 0);
+        
+        e[0] = 1;
+        
+            for( int i = 1; i <= n + 1; i ++)
+            {
+                e[i] = (e[i-1] + o[i-1] + t[i-1])%N;
+                o[i] = (2*e[i-1] + o[i-1])%N;
+                
+                t[i] = (e[i-1])%N;
+            }
+        
+       return (e[n] + o[n] + t[n])%N;
+        
+        //return ans;
+
+    }
+};
